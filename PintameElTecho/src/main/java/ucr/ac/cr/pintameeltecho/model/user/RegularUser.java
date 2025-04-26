@@ -16,6 +16,17 @@ public class RegularUser {
     public RegularUser() {
     }
 
+    public RegularUser(String mail, String nameUser, String direction, String rol, String password) {
+        this.mail = mail;
+        this.nameUser = nameUser;
+        this.direction = direction;
+        this.rol = rol;
+        this.password = password;
+    }
+    
+    
+    
+    
     public String getMail() {
         return mail;
     }

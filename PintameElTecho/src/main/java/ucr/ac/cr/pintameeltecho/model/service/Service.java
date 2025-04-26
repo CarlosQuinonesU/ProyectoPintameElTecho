@@ -10,13 +10,30 @@ package ucr.ac.cr.pintameeltecho.model.service;
  */
 public class Service {
     
-    private String name, icon, description;
-    private double aproximatePrice, totalPrice;
+    private String name, icon, description, aproximatePrice;
+    private double totalPrice;
     private Review review;
 
     public Service() {
     }
 
+    public Service(String name, String description, String aproximatePrice) {
+        this.name = name;
+        this.description = description;
+        this.aproximatePrice=aproximatePrice;
+    }
+
+    public Service(String name, String icon, String description, String aproximatePrice, double totalPrice, Review review) {
+        this.name = name;
+        this.icon = icon;
+        this.description = description;
+        this.aproximatePrice = aproximatePrice;
+        this.totalPrice = totalPrice;
+        this.review = review;
+    }
+
+    
+    
     public String getName() {
         return name;
     }
@@ -41,11 +58,11 @@ public class Service {
         this.description = description;
     }
 
-    public double getAproximatePrice() {
+    public String getAproximatePrice() {
         return aproximatePrice;
     }
 
-    public void setAproximatePrice(double aproximatePrice) {
+    public void setAproximatePrice(String aproximatePrice) {
         this.aproximatePrice = aproximatePrice;
     }
 
@@ -59,7 +76,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" + "name=" + name + ", icon=" + icon + ", description=" + description + ", aproximatePrice=" + aproximatePrice + ", totalPrice=" + totalPrice + ", review=" + review + '}';
+        return "Service{" + "name=" + name + ", icon=" + icon + ", description=" + description + ", aproximatePrice=" + aproximatePrice + /*", totalPrice=" + totalPrice + ", review=" + review + */'}';
     }
     
     
