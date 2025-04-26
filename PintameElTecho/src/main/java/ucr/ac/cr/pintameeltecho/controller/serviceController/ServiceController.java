@@ -8,8 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ucr.ac.cr.pintameeltecho.controller.MainController;
 import ucr.ac.cr.pintameeltecho.model.service.Service;
+import ucr.ac.cr.pintameeltecho.model.service.ServiceRecord;
 import ucr.ac.cr.pintameeltecho.view.GUIMain;
-import ucr.ac.cr.pintameeltecho.view.GUIServiceRegister;
+import ucr.ac.cr.pintameeltecho.view.service.GUIServiceRegister;
 
 /**
  *
@@ -21,11 +22,13 @@ public class ServiceController implements ActionListener {
     private Service service;
     private MainController mainController;
     private GUIMain guiMain;
+    private ServiceRecord record;
 
     public ServiceController() {
-        service = new Service();
+        record=new ServiceRecord();
         guiServiceRegister = new GUIServiceRegister();
         guiServiceRegister.listen(this);
+        
     }
     
     public void setGuiMain(GUIMain guiMain) {
@@ -34,6 +37,10 @@ public class ServiceController implements ActionListener {
 
     public GUIServiceRegister getGuiServiceRegister() {
         return guiServiceRegister;
+    }
+
+    public ServiceRecord getRecord() {
+        return record;
     }
     
     
@@ -63,16 +70,18 @@ public class ServiceController implements ActionListener {
                 System.out.println("Selecciono esta etiqueta");
                 break;
             case "Registrar":
-                String servicioValido="El servicio se registro";
+                String servicioValido="Se ha registrado correctamente";
                 String name=guiServiceRegister.getTxtName();
+                String socio=guiServiceRegister.getTxtSocio();
                 String description=guiServiceRegister.getTxtDescription();
-                String aproximatePrice=guiServiceRegister.getTxtAproximatePrice();
+//                String aproximatePrice=guiServiceRegister.getTxtAproximatePrice();
                 guiServiceRegister.showMessage(validate());
                 
                 if(validate()==servicioValido){
-                    service = new Service(name, description, aproximatePrice);
+                    service = new Service(name, description, socio);
+                    record.add(service);
                 }
-                System.out.println(service.toString());
+//                System.out.println(service.toString());
                 break;
             case "Cancelar":
                 guiServiceRegister.dispose();

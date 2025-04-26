@@ -12,6 +12,8 @@ public class RegularUser {
     
     
     private String mail, nameUser, direction, rol, password;
+    
+    public static final String LABELS_USER[]={"Correo","Nombre","Rol", "Dirección"};
 
     public RegularUser() {
     }
@@ -66,14 +68,39 @@ public class RegularUser {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public String getProperty(int index) {
+        switch (index) {
+            case 0:
+                return mail;
+            case 1:
+                return nameUser;
+            case 2:
+                return direction;
+            case 3:
+                return rol;
+            default:
+                throw new AssertionError();
+        }
+    }
+    
 
     @Override
     public String toString() {
         return "RegularUser{" + "mail=" + mail + ", nameUser=" + nameUser + ", direction=" + direction + ", rol=" + rol + '}';
     }
     
-    
-
+    @Override
+    public boolean equals(Object obj){
+        if (this==obj) {
+            return true;
+        }
+        if (obj==null||getClass()!=obj.getClass()) {
+            return false;
+        }
+        RegularUser user=(RegularUser)obj;
+        return mail.equals(user.mail);
+    }
 
 
 
