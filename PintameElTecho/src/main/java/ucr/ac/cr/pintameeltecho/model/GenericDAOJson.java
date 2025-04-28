@@ -63,7 +63,7 @@ public class GenericDAOJson <T>{
         ArrayList<T> elements=getAll();
         if (elements.add(element)) {
             writeJson(elements);
-            return "El usuario fue registrado exitosamente."; 
+            return "Fue registrado exitosamente."; 
         }
         return "Hubo un problema en la ejecución.";
     }

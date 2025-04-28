@@ -1,8 +1,23 @@
 [
   {
-    "name": "vbdfbdfb",
-    "description": "dfbdfbdfb",
-    "socio": "fdbdfbdfb",
-    "calificacion": "Buena"
+    "name": "Te Pinto el techo",
+    "description": "Te pinto todito el techo y muy rapido XDD",
+    "socio": "Carlos Quiñones Ugalde",
+    "calificacion": "Buena",
+    "icon": "src/main/resources/img/IconPaint.png"
+  },
+  {
+    "name": "Te arreglo el jardín",
+    "description": "Te voy a arreglar el jardín, tu flores, cesped y otros elementos van a quedar hermsos.",
+    "socio": "Emily Van Galder ",
+    "calificacion": "Buena",
+    "icon": "src/main/resources/img/IconGarden.png"
+  },
+  {
+    "name": "Te arreglo tus tuberias",
+    "description": "Te voy a reparar todas tus tuberias, no importa si está tapda, está goteando o hay que instalar nuevas.",
+    "socio": "Eduardo Picado Campos",
+    "calificacion": "Buena",
+    "icon": "src/main/resources/img/IconPlumber.png"
   }
 ]

@@ -11,13 +11,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import ucr.ac.cr.pintameeltecho.controller.MainController;
-import ucr.ac.cr.pintameeltecho.controller.serviceController.ServiceController;
 import ucr.ac.cr.pintameeltecho.model.user.RegularUser;
 import ucr.ac.cr.pintameeltecho.model.user.UserRecord;
 import ucr.ac.cr.pintameeltecho.view.GUIMain;
 import ucr.ac.cr.pintameeltecho.view.panels.DataTable;
 import ucr.ac.cr.pintameeltecho.view.user.GUIRegistration;
-import ucr.ac.cr.pintameeltecho.view.service.GUIServiceRegister;
 import ucr.ac.cr.pintameeltecho.view.user.GUIUserMaintenance;
 
 /**
@@ -30,12 +28,12 @@ public class UserController implements ActionListener, MouseListener, KeyListene
     private GUIRegistration guiRegistration;
     private RegularUser user;
     private UserRecord userRegister;
-//    private ServiceController serviceController;
-//    private GUIServiceRegister guiServiceRegister;
     private MainController mainController;
     private GUIUserMaintenance guiUserMaintenance;
     private DataTable dataTable;
-    
+    private int option;
+
+    //Seccion de constructores
     
     public UserController() {
         userRegister=new UserRecord();
@@ -46,10 +44,10 @@ public class UserController implements ActionListener, MouseListener, KeyListene
         dataTable.listenKeyBoard(this);
         dataTable.listenMouse(this);
         dataTable.setData(userRegister.getData(), RegularUser.LABELS_USER);
-        
-//        guiServiceRegister.listen(serviceController);
-//        serviceController = new ServiceController();
+        option=0;
     }
+    
+    //Seccion de set's and get's
 
     public GUIRegistration getGuiRegistration() {
         return guiRegistration;
@@ -66,11 +64,10 @@ public class UserController implements ActionListener, MouseListener, KeyListene
     public GUIUserMaintenance getGuiUserMaintenance() {
         return guiUserMaintenance;
     }
-    
-    
-    
 
-    public String validate() {
+    // Seccion de metodos de accion
+    
+    public String validate() { //Este metodo posiblemente varie en futuro para controlar lo que se está ingresando,por el momento solo que no esté vacío.
         String datos="";
         if (guiRegistration.getTxtMail().equals("")) {
             datos= "Debe rellenar campo (CORREO)";
@@ -83,57 +80,99 @@ public class UserController implements ActionListener, MouseListener, KeyListene
         } else if (!(guiRegistration.getTxtPasswordAgain().equals(guiRegistration.getTxtPassword()))) {
             datos= "Las contraseñas no coinciden, por favor verificar.";
         }else{
-            datos="Se ha registrado correctamente \nAhora inicie sesion para acceder a su cuenta";
+            datos="Campos llenos";
         }
         return datos;
-        
     }//fin validate
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Registrar":
-                String usuarioValido = "Se ha registrado correctamente \nAhora inicie sesion para acceder a su cuenta";
+                String usuarioValido = "Campos llenos";
                 String mail = guiRegistration.getTxtMail();
                 String name = guiRegistration.getTxtName();
                 String direction = guiRegistration.getTxtDirection();
-                String rol = guiRegistration.getjCbRol();
+                String rol = guiRegistration.getJcbRol();
                 String password = guiRegistration.getTxtPassword();
                 guiRegistration.showMessage(validate());
-                
-                
 
                 if (validate() == usuarioValido) {
-                    user = new RegularUser(mail, name, direction, rol, password);
-                    userRegister.add(user);
-                    guiRegistration.dispose();
-                    guiMain.setVisible(true);
-                    
+                    if (option==1||option==0) {
+                        user = new RegularUser(mail, name, direction, rol, password);
+                        guiRegistration.showMessage(userRegister.add(user)+"\n\nAhora inicie sesion para acceder a su cuenta");
+                        option=0;
+                        guiRegistration.dispose();
+                        guiRegistration.clean();
+                        if (option==0) {
+                            guiUserMaintenance.setVisible(true);
+                        }else{
+                            guiMain.setVisible(true);
+                        }
+                    } else {
+                        user.setNameUser(guiRegistration.getTxtName());
+                        user.setDirection(guiRegistration.getTxtDirection());
+                        user.setRol(guiRegistration.getJcbRol());
+                        String currentMail = guiRegistration.getTxtMail();
+                        if (!currentMail.equals(user.getMail())) {
+                            guiRegistration.showMessage("El correo no puede ser modificado, porfavor coloque el correo registrado.");
+                        } else {
+                            guiRegistration.showMessage(userRegister.edit(user));
+                            guiRegistration.dispose();
+                            option = 0;
+                            guiUserMaintenance.setVisible(true);
+                        }
+                    }
+                    dataTable.setData(userRegister.getData(), RegularUser.LABELS_USER);
+
                 }
-                System.out.println(user.toString());
                 break;
             case "Cancelar":
-                System.out.println("Lo cancelo");
                 guiRegistration.dispose();
-                guiMain.setVisible(true);
+                if (option == 1) {
+                    guiUserMaintenance.setVisible(true);
+                    option=0;
+                } else {
+                    guiMain.setVisible(true);
+                }
                 ;
                 break;
             case "Salir":
                 System.exit(0);
                 break;
             case "Agregar":
+                option=1;
+                guiRegistration.setVisible(true);
                 break;
             case "Editar":
+                option=2;
+                if (user!=null) {
+                    guiRegistration.setTxtMail(user.getMail());
+                    guiRegistration.setTxtName(user.getNameUser());
+                    guiRegistration.setTxtDirection(user.getDirection());
+                    guiRegistration.setJcbRol(user.getRol());
+                    guiRegistration.setTxtPassword(user.getPassword());
+                    guiRegistration.setTxtPasswordAgain(user.getPassword());
+                    guiRegistration.setVisible(true);
+//                    user=null;
+                }else{
+                    guiRegistration.showMessage("Debe seleccionar un usuario para poder modificarlo.");
+                }
+                
                 break;
             case "Eliminar":
+                if (user!=null) {
+                    guiRegistration.showMessage(userRegister.delete(user.getMail()));
+                    dataTable.setData(userRegister.getData(), RegularUser.LABELS_USER);
+                    user=null;
+                }else{
+                    guiRegistration.showMessage("Debe seleccionar un usuario para poder borrarlo.");
+                }
                 break;
             case "Menu":
                 guiUserMaintenance.dispose();
                 guiMain.setVisible(true);
                 break;
-                
-                
-                
                 
             default:
                 throw new AssertionError();
@@ -142,6 +181,8 @@ public class UserController implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        String[] userRow= dataTable.getRowSelected();
+        user= userRegister.search(userRow[0]);
     }
 
     @Override
@@ -170,6 +211,7 @@ public class UserController implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void keyReleased(KeyEvent e) {
+        dataTable.filterByMail();
     }
 
 }//fin class

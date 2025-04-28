@@ -17,6 +17,7 @@ import ucr.ac.cr.pintameeltecho.model.service.ServiceRecord;
 import ucr.ac.cr.pintameeltecho.model.user.RegularUser;
 import ucr.ac.cr.pintameeltecho.model.user.UserRecord;
 import ucr.ac.cr.pintameeltecho.view.GUIMain;
+import ucr.ac.cr.pintameeltecho.view.page.GUIInfoService;
 import ucr.ac.cr.pintameeltecho.view.page.MainPage;
 import ucr.ac.cr.pintameeltecho.view.page.ServiceTable;
 import ucr.ac.cr.pintameeltecho.view.user.GUIRegistration;
@@ -41,22 +42,27 @@ public class MainController implements ActionListener, MouseListener, KeyListene
     private ServiceTable serviceTable;
     private ServiceRecord record;
     private Service service;
+    private GUIInfoService guiInfoService;
 
     public MainController() {
         guiMain = new GUIMain();
-        guiMain.listen(this);
-        guiMain.setVisible(true);
+        mainPage= new MainPage();
         serviceController = new ServiceController();
-        serviceController.setGuiMain(guiMain);
         userController = new UserController();
-        userController.setGuiMain(guiMain);
         record=serviceController.getRecord();
         userRecord = userController.getUserRegister();
         guiUserMaintenance = userController.getGuiUserMaintenance();
-        mainPage= new MainPage();
         serviceTable= mainPage.getServiceTable();
-        serviceTable.listenKey(userController);
-        serviceTable.listenMouse(userController);
+        guiInfoService=new GUIInfoService(mainPage, true);
+        guiMain.listen(this);
+        guiMain.setVisible(true);
+        mainPage.listen(this);
+        guiInfoService.listen(this);
+        serviceController.setMainPage(mainPage);
+        serviceController.setServiceTable(serviceTable);
+        userController.setGuiMain(guiMain);
+        serviceTable.listenKey(this);
+        serviceTable.listenMouse(this);
         serviceTable.setData(record.getData(), Service.LABELS_SERVICE);
         user = null;
     }
@@ -64,6 +70,17 @@ public class MainController implements ActionListener, MouseListener, KeyListene
     public GUIMain getGuiMain() {
         return guiMain;
     }
+
+    public MainPage getMainPage() {
+        return mainPage;
+    }
+
+    public ServiceTable getServiceTable() {
+        return serviceTable;
+    }
+    
+    
+    
 
     public String validate() {
         String datos = "";
@@ -79,7 +96,25 @@ public class MainController implements ActionListener, MouseListener, KeyListene
             } else if (!user.getPassword().equals(guiMain.getTxtLogInPassw())) {
                 datos = "La contraseña no coincide, por favor verificar.";
             } else {
-                datos = "Los datos ingresados son correctos, bienvenido a PINTAME EL TECHO.";
+                datos = "Los datos ingresados son correctos, Bienvenido a PINTAME EL TECHO.";
+            }
+        }
+        return datos;
+    }
+    public String validateAdmin() {
+        String datos = "";
+
+        if (guiMain.getTxtLogInUser().equals("")) {
+            datos = "El campo del correo electrónico no puede quedar vacío.";
+        } else if (guiMain.getTxtLogInPassw().equals("")) {
+            datos = "El campo de la contraseña no puede quedar vacío.";
+        } else {
+            if (!guiMain.getTxtLogInUser().equals("admin")) {// Se coloca de esta forma, porque se creo un usuario especifico para administar los usuarios y no se pueden crear más.
+                datos = "El usuario de administrador no es correcto, por favor solicitarlo.";
+            } else if (!guiMain.getTxtLogInPassw().equals("admin")) {//// Se coloca de esta forma, porque se creo un usuario especifico para administar los usuarios y no se pueden crear más.
+                datos = "La contraseña de administrador no coincide, por favor verificar o solicitarla.";
+            } else {
+                datos = "Bienvenido administrador de usuarios.";
             }
         }
         return datos;
@@ -89,13 +124,11 @@ public class MainController implements ActionListener, MouseListener, KeyListene
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Registrarse":
-                System.out.println("Se quiere registrar");
                 guiMain.dispose();
                 userController.getGuiRegistration().setVisible(true);
                 break;
             case "Ingresar":
-                System.out.println("Quiere ingresar");
-                String usuarioValido = "Los datos ingresados son correctos, bienvenido a PINTAME EL TECHO.";
+                String usuarioValido = "Los datos ingresados son correctos, Bienvenido a PINTAME EL TECHO.";
                 guiMain.showMessage(validate());
                 if (validate().equals(usuarioValido)) {
                     guiMain.dispose();
@@ -103,16 +136,43 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                     mainPage.setVisible(true);
                 }
                 break;
-            case "Servicio":
-                System.out.println("Quiere registrar una chamba");
+            case "AddService":
                 guiMain.dispose();
                 serviceController.getGuiServiceRegister().setVisible(true);
                 break;
             case "Maintenance":
-                
-                
-                guiMain.dispose();
-                guiUserMaintenance.setVisible(true);
+                String administradorCorrect="Bienvenido administrador de usuarios.";
+                guiMain.showMessage(validateAdmin());
+                if (validateAdmin()==administradorCorrect) {
+                    guiMain.dispose();
+                    guiMain.clean();
+                    guiUserMaintenance.setVisible(true);
+                }
+                break;
+            case "Informacion":
+                if (service != null) {
+                    guiInfoService.getjLabelTitle().setText(service.getName());
+                    guiInfoService.getjLabelDescrip().setText(service.getDescription());
+                    guiInfoService.getjLabelSocioN().setText(service.getSocio());
+                    guiInfoService.setJlabelIcon(service.getIcon());
+                    guiInfoService.setVisible(true);
+                }else{
+                    guiMain.showMessage("Debe hacer click en algún servico para poder desplegar más informacón.");
+                }
+                break;
+            case"Hire":
+                guiMain.showMessage("Felicidades!\n\nUsted ha contrado el servico, nuestro socio la ha estar realizando el trabajo lo antes posible."
+                        + "\nMuchas gracias por preferirnos");
+                guiInfoService.dispose();
+                mainPage.setVisible(true);
+                break;
+            case"Cancel":
+                guiInfoService.dispose();
+                mainPage.setVisible(true);
+                break;
+            case "LogOut":
+                mainPage.dispose();
+                guiMain.setVisible(true);
                 break;
             case "Salir":
                 System.exit(0);
@@ -124,6 +184,8 @@ public class MainController implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        String [] serviceRow= serviceTable.getRowSelected();
+        service= record.search(serviceRow[0]);
     }
 
     @Override
@@ -152,6 +214,7 @@ public class MainController implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void keyReleased(KeyEvent e) {
+        serviceTable.filterByName();
     }
 
 }

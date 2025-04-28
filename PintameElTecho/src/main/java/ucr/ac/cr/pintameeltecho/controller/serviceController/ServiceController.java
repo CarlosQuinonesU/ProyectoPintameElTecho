@@ -6,10 +6,10 @@ package ucr.ac.cr.pintameeltecho.controller.serviceController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ucr.ac.cr.pintameeltecho.controller.MainController;
 import ucr.ac.cr.pintameeltecho.model.service.Service;
 import ucr.ac.cr.pintameeltecho.model.service.ServiceRecord;
-import ucr.ac.cr.pintameeltecho.view.GUIMain;
+import ucr.ac.cr.pintameeltecho.view.page.MainPage;
+import ucr.ac.cr.pintameeltecho.view.page.ServiceTable;
 import ucr.ac.cr.pintameeltecho.view.service.GUIServiceRegister;
 
 /**
@@ -20,21 +20,26 @@ public class ServiceController implements ActionListener {
 
     private GUIServiceRegister guiServiceRegister;
     private Service service;
-    private MainController mainController;
-    private GUIMain guiMain;
     private ServiceRecord record;
+    private MainPage mainPage;
+    private String icon;
+    private ServiceTable serviceTable;
+    
+    //Seccion de contructores
 
     public ServiceController() {
         record=new ServiceRecord();
         guiServiceRegister = new GUIServiceRegister();
         guiServiceRegister.listen(this);
-        
+        icon="";
     }
     
-    public void setGuiMain(GUIMain guiMain) {
-        this.guiMain = guiMain;
-    }
+    //Seccion de set's and get's
 
+    public void setMainPage(MainPage mainPage) {
+        this.mainPage = mainPage;
+    }
+    
     public GUIServiceRegister getGuiServiceRegister() {
         return guiServiceRegister;
     }
@@ -42,32 +47,43 @@ public class ServiceController implements ActionListener {
     public ServiceRecord getRecord() {
         return record;
     }
+
+    public void setServiceTable(ServiceTable serviceTable) {
+        this.serviceTable = serviceTable;
+    }
     
     
+    //Seccion de metodos de accion
 
     public String validate() {
-         if (guiServiceRegister.getTxtName().equals("")) {
-            return "Debe rellenar campo (NOMBRE DE SERVICIO)";
+        String datos="";
+        if (guiServiceRegister.getTxtName().equals("")) {
+            datos= "Debe rellenar campo (NOMBRE DE SERVICIO)";
         } else if (guiServiceRegister.getTxtDescription().equals("")) {
-            return "Debe rellenar campo (DESCRIPCION)";
+            datos= "Debe rellenar campo (DESCRIPCION)";
         } else if (guiServiceRegister.getTxtAproximatePrice().equals("")) {
-            return "Debe rellenar campo (PRECIO APROXIMADO)";
-        } 
-        return "Se ha registrado correctamente";
-
+            datos= "Debe rellenar campo (PRECIO APROXIMADO)";
+        } else if (guiServiceRegister.getTxtSocio().equals("")) {
+            datos ="Debe rellenar campo (Socio)";
+        } else if (icon.equals("")) {
+            datos ="Debe selecionar una opcion de icono.";
+        } else {
+            datos= "Se ha registrado correctamente";
+        }
+        return datos;
     }//fin validate
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Arte":
-                 System.out.println("Selecciono esta etiqueta");
+                icon="src/main/resources/img/IconPaint.png";
                 break;
             case "Jardin":
-                System.out.println("Selecciono esta etiqueta");
+                icon="src/main/resources/img/IconGarden.png";
                 break;
             case "Reparaciones":
-                System.out.println("Selecciono esta etiqueta");
+                icon="src/main/resources/img/IconPlumber.png";
                 break;
             case "Registrar":
                 String servicioValido="Se ha registrado correctamente";
@@ -78,14 +94,19 @@ public class ServiceController implements ActionListener {
                 guiServiceRegister.showMessage(validate());
                 
                 if(validate()==servicioValido){
-                    service = new Service(name, description, socio);
+                    service = new Service(name, description, socio, icon);
                     record.add(service);
+                    icon="";
+                    guiServiceRegister.dispose();
+                    serviceTable.setData(record.getData(), Service.LABELS_SERVICE);
+                    mainPage.setVisible(true);
+                    guiServiceRegister.clean();
                 }
-//                System.out.println(service.toString());
                 break;
             case "Cancelar":
                 guiServiceRegister.dispose();
-                guiMain.setVisible(true);
+                guiServiceRegister.clean();
+                mainPage.setVisible(true);
                 break;
             default:
                 throw new AssertionError();

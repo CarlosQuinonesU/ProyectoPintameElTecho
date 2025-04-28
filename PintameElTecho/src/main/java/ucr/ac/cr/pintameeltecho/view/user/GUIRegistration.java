@@ -29,54 +29,52 @@ public class GUIRegistration extends javax.swing.JFrame {
         btnCancel.addActionListener(controller);
     }
 
-    
-   
-    public String getjCbRol() {
+    public String getJcbRol() {
         return jcbRol.getSelectedItem().toString();
     }
 
-    public void setjComboBox1(JComboBox<String> jComboBox1) {
-        this.jcbRol = jComboBox1;
+    public void setJcbRol(String jcbRol) {
+        this.jcbRol.setSelectedItem(jcbRol);
     }
 
     public String getTxtDirection() {
         return txtDirection.getText();
     }
 
-    public void setTxtDirection(JTextField txtDirection) {
-        this.txtDirection = txtDirection;
+    public void setTxtDirection(String txtDirection) {
+        this.txtDirection.setText(txtDirection);
     }
 
     public String getTxtMail() {
         return txtMail.getText();
     }
 
-    public void setTxtMail(JTextField txtMail) {
-        this.txtMail = txtMail;
+    public void setTxtMail(String txtMail) {
+        this.txtMail.setText(txtMail);
     }
 
     public String getTxtName() {
         return txtName.getText();
     }
 
-    public void setTxtName(JTextField txtName) {
-        this.txtName = txtName;
+    public void setTxtName(String txtName) {
+        this.txtName.setText(txtName);
     }
 
     public String getTxtPassword() {
         return txtPassword.getText();
     }
 
-    public void setTxtPassword(JTextField txtPassword) {
-        this.txtPassword = txtPassword;
+    public void setTxtPassword(String txtPassword) {
+        this.txtPassword.setText(txtPassword);
     }
 
     public String getTxtPasswordAgain() {
         return txtPasswordAgain.getText();
     }
 
-    public void setTxtPasswordAgain(JTextField txtPasswordAgain) {
-        this.txtPasswordAgain = txtPasswordAgain;
+    public void setTxtPasswordAgain(String txtPasswordAgain) {
+        this.txtPasswordAgain.setText(txtPasswordAgain);
     }
     
     public void showMessage(String message){
@@ -84,11 +82,11 @@ public class GUIRegistration extends javax.swing.JFrame {
     }
     
     public void clean(){
-        setTxtMail(txtMail);
-        setTxtName(txtName);
-        setTxtDirection(txtDirection);
-        setTxtPassword(txtPassword);
-        setTxtPasswordAgain(txtPasswordAgain);
+        setTxtMail("");
+        setTxtName("");
+        setTxtDirection("");
+        setTxtPassword("");
+        setTxtPasswordAgain("");
     }
     /**
      * This method is called from within the constructor to initialize the form.

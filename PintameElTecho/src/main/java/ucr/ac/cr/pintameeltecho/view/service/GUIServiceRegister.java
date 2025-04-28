@@ -48,10 +48,29 @@ public class GUIServiceRegister extends javax.swing.JFrame {
     public void setTxtSocio(String txtSocio) {
         this.txtSocio.setText(txtSocio);
     }
-    
+
+    public void setTxtAproximatePrice(String txtAproximatePrice) {
+        this.txtAproximatePrice.setText(txtAproximatePrice);
+    }
+
+    public void setTxtDescription(String txtDescription) {
+        this.txtDescription.setText(txtDescription);
+    }
+
+    public void setTxtName(String txtName) {
+        this.txtName.setText(txtName);
+    }
+
     
     public void showMessage(String message){
         JOptionPane.showMessageDialog(null, message);
+    }
+    
+    public void clean(){
+        setTxtAproximatePrice("");
+        setTxtDescription("");
+        setTxtName("");
+        setTxtSocio("");
     }
     
     /**

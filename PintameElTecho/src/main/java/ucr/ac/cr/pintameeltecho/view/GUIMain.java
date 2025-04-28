@@ -47,7 +47,6 @@ public class GUIMain extends javax.swing.JFrame {
     public void listen(ActionListener controller) {
         btnRegister.addActionListener(controller);
         btnLogin.addActionListener(controller);
-        btnServiceRegister.addActionListener(controller);
         btnExit.addActionListener(controller);
         btnUserMaintenance.addActionListener(controller);
     }
@@ -74,7 +73,6 @@ public class GUIMain extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnServiceRegister = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtLogInUser = new javax.swing.JTextField();
@@ -83,7 +81,7 @@ public class GUIMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Bienvenido a PINTAME EL TECHO");
 
         btnRegister.setText("Registrarse");
@@ -91,9 +89,6 @@ public class GUIMain extends javax.swing.JFrame {
         btnLogin.setText("Ingresar");
 
         btnExit.setText("Salir");
-
-        btnServiceRegister.setText("Registrar Servicio");
-        btnServiceRegister.setActionCommand("Servicio");
 
         jLabel2.setText("Correo electronico:");
 
@@ -112,7 +107,10 @@ public class GUIMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,20 +118,15 @@ public class GUIMain extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(48, 48, 48)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtLogInPassw, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                                    .addComponent(txtLogInUser)))
+                                    .addComponent(txtLogInPassw)
+                                    .addComponent(txtLogInUser, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnUserMaintenance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnUserMaintenance))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnServiceRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(jLabel1)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +146,7 @@ public class GUIMain extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(btnRegister))
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnServiceRegister)
-                    .addComponent(btnUserMaintenance))
+                .addComponent(btnUserMaintenance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -168,7 +159,6 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnServiceRegister;
     private javax.swing.JButton btnUserMaintenance;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

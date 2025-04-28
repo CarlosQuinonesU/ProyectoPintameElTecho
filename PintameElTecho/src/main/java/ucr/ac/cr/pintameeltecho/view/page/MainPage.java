@@ -5,8 +5,7 @@
 package ucr.ac.cr.pintameeltecho.view.page;
 
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,11 +18,21 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
-
+        
     }
 
     public ServiceTable getServiceTable() {
         return serviceTable;
+    }
+    
+    public void listen(ActionListener controller){
+        btnCloseSection.addActionListener(controller);
+        btnInfo.addActionListener(controller);
+        btnAddService.addActionListener(controller);
+    }
+    
+    public void showMessage(String message){
+        JOptionPane.showMessageDialog(null, message);
     }
 
     /**
@@ -35,16 +44,21 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        serviceTable = new ucr.ac.cr.pintameeltecho.view.page.ServiceTable();
         btnCloseSection = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
+        btnAddService = new javax.swing.JButton();
+        serviceTable = new ucr.ac.cr.pintameeltecho.view.page.ServiceTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnCloseSection.setText("Cerrar sesion");
+        btnCloseSection.setActionCommand("LogOut");
 
         btnInfo.setText("+ Información");
         btnInfo.setActionCommand("Informacion");
+
+        btnAddService.setText("Agregar servicio");
+        btnAddService.setActionCommand("AddService");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,28 +66,28 @@ public class MainPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(serviceTable, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(serviceTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCloseSection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnInfo)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(btnAddService, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(serviceTable, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(btnInfo)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(serviceTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(btnAddService)
+                .addGap(18, 18, 18)
+                .addComponent(btnInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCloseSection)
-                .addGap(15, 15, 15))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -84,6 +98,7 @@ public class MainPage extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddService;
     private javax.swing.JButton btnCloseSection;
     private javax.swing.JButton btnInfo;
     private ucr.ac.cr.pintameeltecho.view.page.ServiceTable serviceTable;

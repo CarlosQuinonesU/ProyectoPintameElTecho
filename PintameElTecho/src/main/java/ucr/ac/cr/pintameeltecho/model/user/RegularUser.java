@@ -13,7 +13,7 @@ public class RegularUser {
     
     private String mail, nameUser, direction, rol, password;
     
-    public static final String LABELS_USER[]={"Correo","Nombre","Rol", "Dirección"};
+    public static final String LABELS_USER[]={"Correo","Nombre","Dirección", "Rol"};
 
     public RegularUser() {
     }
