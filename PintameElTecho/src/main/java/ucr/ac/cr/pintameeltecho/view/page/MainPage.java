@@ -4,7 +4,9 @@
  */
 package ucr.ac.cr.pintameeltecho.view.page;
 
+import ucr.ac.cr.pintameeltecho.view.service.ServiceTable;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,11 +31,40 @@ public class MainPage extends javax.swing.JFrame {
         btnCloseSection.addActionListener(controller);
         btnInfo.addActionListener(controller);
         btnAddService.addActionListener(controller);
+        btnMaintenance.addActionListener(controller);
+        btnDeleteServ.addActionListener(controller);
     }
     
     public void showMessage(String message){
         JOptionPane.showMessageDialog(null, message);
     }
+
+    public JButton getBtnAddService() {
+        return btnAddService;
+    }
+
+    public void setBtnAddService(JButton btnAddService) {
+        this.btnAddService = btnAddService;
+    }
+
+    public JButton getBtnMaintenance() {
+        return btnMaintenance;
+    }
+
+    public void setBtnMaintenance(JButton btnMaintenance) {
+        this.btnMaintenance = btnMaintenance;
+    }
+
+    public JButton getBtnDeleteServ() {
+        return btnDeleteServ;
+    }
+
+    public void setBtnDeleteServ(JButton btnDeleteServ) {
+        this.btnDeleteServ = btnDeleteServ;
+    }
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,48 +78,54 @@ public class MainPage extends javax.swing.JFrame {
         btnCloseSection = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
         btnAddService = new javax.swing.JButton();
-        serviceTable = new ucr.ac.cr.pintameeltecho.view.page.ServiceTable();
+        btnMaintenance = new javax.swing.JButton();
+        btnDeleteServ = new javax.swing.JButton();
+        serviceTable = new ucr.ac.cr.pintameeltecho.view.service.ServiceTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCloseSection.setText("Cerrar sesion");
+        btnCloseSection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonCerrar.png"))); // NOI18N
         btnCloseSection.setActionCommand("LogOut");
+        btnCloseSection.setBorder(null);
+        btnCloseSection.setBorderPainted(false);
+        btnCloseSection.setContentAreaFilled(false);
+        getContentPane().add(btnCloseSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 570, 220, -1));
 
-        btnInfo.setText("+ Información");
+        btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonInfo.png"))); // NOI18N
         btnInfo.setActionCommand("Informacion");
+        btnInfo.setBorder(null);
+        btnInfo.setContentAreaFilled(false);
+        getContentPane().add(btnInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 140, 200, -1));
 
-        btnAddService.setText("Agregar servicio");
+        btnAddService.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonAddService.png"))); // NOI18N
+        btnAddService.setToolTipText("");
         btnAddService.setActionCommand("AddService");
+        btnAddService.setBorder(null);
+        btnAddService.setContentAreaFilled(false);
+        getContentPane().add(btnAddService, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 240, 180, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(serviceTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCloseSection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddService, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(serviceTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btnAddService)
-                .addGap(18, 18, 18)
-                .addComponent(btnInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCloseSection)
-                .addGap(17, 17, 17))
-        );
+        btnMaintenance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonMantenimientoU.png"))); // NOI18N
+        btnMaintenance.setToolTipText("");
+        btnMaintenance.setActionCommand("Maintenance");
+        btnMaintenance.setAutoscrolls(true);
+        btnMaintenance.setBorder(null);
+        btnMaintenance.setBorderPainted(false);
+        btnMaintenance.setContentAreaFilled(false);
+        getContentPane().add(btnMaintenance, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
+
+        btnDeleteServ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonBorrar.png"))); // NOI18N
+        btnDeleteServ.setActionCommand("DeleteServ");
+        btnDeleteServ.setBorder(null);
+        btnDeleteServ.setBorderPainted(false);
+        btnDeleteServ.setContentAreaFilled(false);
+        getContentPane().add(btnDeleteServ, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 450, -1, -1));
+        getContentPane().add(serviceTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 710));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MainPage.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1060, 780));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,7 +137,10 @@ public class MainPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddService;
     private javax.swing.JButton btnCloseSection;
+    private javax.swing.JButton btnDeleteServ;
     private javax.swing.JButton btnInfo;
-    private ucr.ac.cr.pintameeltecho.view.page.ServiceTable serviceTable;
+    private javax.swing.JButton btnMaintenance;
+    private javax.swing.JLabel jLabel1;
+    private ucr.ac.cr.pintameeltecho.view.service.ServiceTable serviceTable;
     // End of variables declaration//GEN-END:variables
 }

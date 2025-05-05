@@ -35,9 +35,10 @@ public class UserController implements ActionListener, MouseListener, KeyListene
 
     //Seccion de constructores
     
-    public UserController() {
+    public UserController(MainController mainController) {
         userRegister=new UserRecord();
         guiRegistration = new GUIRegistration();
+        this.mainController= mainController;
         guiRegistration.listen(this);
         guiUserMaintenance=new GUIUserMaintenance(this);
         dataTable = guiUserMaintenance.getDataTable();
@@ -129,13 +130,13 @@ public class UserController implements ActionListener, MouseListener, KeyListene
                 break;
             case "Cancelar":
                 guiRegistration.dispose();
-                if (option == 1) {
+                if (option == 1||option==2) {
                     guiUserMaintenance.setVisible(true);
                     option=0;
                 } else {
                     guiMain.setVisible(true);
                 }
-                ;
+                guiRegistration.clean();
                 break;
             case "Salir":
                 System.exit(0);
@@ -171,7 +172,7 @@ public class UserController implements ActionListener, MouseListener, KeyListene
                 break;
             case "Menu":
                 guiUserMaintenance.dispose();
-                guiMain.setVisible(true);
+                mainController.getMainPage().setVisible(true);
                 break;
                 
             default:
@@ -181,12 +182,13 @@ public class UserController implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String[] userRow= dataTable.getRowSelected();
-        user= userRegister.search(userRow[0]);
+        
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        String[] userRow = dataTable.getRowSelected();
+        user = userRegister.search(userRow[0]);
     }
 
     @Override
@@ -214,4 +216,4 @@ public class UserController implements ActionListener, MouseListener, KeyListene
         dataTable.filterByMail();
     }
 
-}//fin class
+}//Fin clase

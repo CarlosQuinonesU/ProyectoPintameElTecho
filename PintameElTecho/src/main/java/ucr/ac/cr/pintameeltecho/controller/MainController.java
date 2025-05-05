@@ -12,14 +12,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import ucr.ac.cr.pintameeltecho.controller.serviceController.ServiceController;
 import ucr.ac.cr.pintameeltecho.controller.userController.UserController;
+import ucr.ac.cr.pintameeltecho.model.review.Review;
+import ucr.ac.cr.pintameeltecho.model.review.ReviewList;
+import ucr.ac.cr.pintameeltecho.model.review.ReviewRecord;
 import ucr.ac.cr.pintameeltecho.model.service.Service;
 import ucr.ac.cr.pintameeltecho.model.service.ServiceRecord;
 import ucr.ac.cr.pintameeltecho.model.user.RegularUser;
 import ucr.ac.cr.pintameeltecho.model.user.UserRecord;
 import ucr.ac.cr.pintameeltecho.view.GUIMain;
 import ucr.ac.cr.pintameeltecho.view.page.GUIInfoService;
+import ucr.ac.cr.pintameeltecho.view.service.GUIReview;
 import ucr.ac.cr.pintameeltecho.view.page.MainPage;
-import ucr.ac.cr.pintameeltecho.view.page.ServiceTable;
+import ucr.ac.cr.pintameeltecho.view.service.ServiceTable;
 import ucr.ac.cr.pintameeltecho.view.user.GUIRegistration;
 import ucr.ac.cr.pintameeltecho.view.service.GUIServiceRegister;
 import ucr.ac.cr.pintameeltecho.view.user.GUIUserMaintenance;
@@ -29,7 +33,7 @@ import ucr.ac.cr.pintameeltecho.view.user.GUIUserMaintenance;
  * @author Admin
  */
 public class MainController implements ActionListener, MouseListener, KeyListener {
-
+    
     private GUIMain guiMain;
     private GUIRegistration guiRegistration;
     private UserController userController;
@@ -43,21 +47,28 @@ public class MainController implements ActionListener, MouseListener, KeyListene
     private ServiceRecord record;
     private Service service;
     private GUIInfoService guiInfoService;
-
+    private GUIReview guiReview;
+    private ReviewRecord reviewRecord;
+    private int star;
+    
     public MainController() {
         guiMain = new GUIMain();
-        mainPage= new MainPage();
-        serviceController = new ServiceController();
-        userController = new UserController();
-        record=serviceController.getRecord();
+        mainPage = new MainPage();
+        serviceController = new ServiceController(this);
+        userController = new UserController(this);
+        guiReview = new GUIReview();
+        record = serviceController.getRecord();
         userRecord = userController.getUserRegister();
+        reviewRecord = new ReviewRecord();
         guiUserMaintenance = userController.getGuiUserMaintenance();
-        serviceTable= mainPage.getServiceTable();
-        guiInfoService=new GUIInfoService(mainPage, true);
+        serviceTable = mainPage.getServiceTable();
+        guiInfoService = new GUIInfoService(mainPage, true);
         guiMain.listen(this);
         guiMain.setVisible(true);
         mainPage.listen(this);
         guiInfoService.listen(this);
+        guiReview.listen(this);
+        guiReview.listenMouse(this);
         serviceController.setMainPage(mainPage);
         serviceController.setServiceTable(serviceTable);
         userController.setGuiMain(guiMain);
@@ -65,26 +76,28 @@ public class MainController implements ActionListener, MouseListener, KeyListene
         serviceTable.listenMouse(this);
         serviceTable.setData(record.getData(), Service.LABELS_SERVICE);
         user = null;
+        star = 0;
     }
-
+    
     public GUIMain getGuiMain() {
         return guiMain;
     }
-
+    
     public MainPage getMainPage() {
         return mainPage;
     }
-
+    
     public ServiceTable getServiceTable() {
         return serviceTable;
     }
     
+    public RegularUser getUser() {
+        return user;
+    }
     
-    
-
     public String validate() {
         String datos = "";
-
+        
         if (guiMain.getTxtLogInUser().equals("")) {
             datos = "El campo del correo electrónico no puede quedar vacío.";
         } else if (guiMain.getTxtLogInPassw().equals("")) {
@@ -101,24 +114,42 @@ public class MainController implements ActionListener, MouseListener, KeyListene
         }
         return datos;
     }
-    public String validateAdmin() {
-        String datos = "";
-
-        if (guiMain.getTxtLogInUser().equals("")) {
-            datos = "El campo del correo electrónico no puede quedar vacío.";
-        } else if (guiMain.getTxtLogInPassw().equals("")) {
-            datos = "El campo de la contraseña no puede quedar vacío.";
-        } else {
-            if (!guiMain.getTxtLogInUser().equals("admin")) {// Se coloca de esta forma, porque se creo un usuario especifico para administar los usuarios y no se pueden crear más.
-                datos = "El usuario de administrador no es correcto, por favor solicitarlo.";
-            } else if (!guiMain.getTxtLogInPassw().equals("admin")) {//// Se coloca de esta forma, porque se creo un usuario especifico para administar los usuarios y no se pueden crear más.
-                datos = "La contraseña de administrador no coincide, por favor verificar o solicitarla.";
-            } else {
-                datos = "Bienvenido administrador de usuarios.";
-            }
+    
+    public void setStars(Object object) {
+        String rutaFull = "./src/main/resources/img/ButtonFullStar.png";
+        String rutaEmpty = "./src/main/resources/img/ButtonEmptyStar.png";
+        if (object == guiReview.getBtnStar5()) {
+            guiReview.setBtnStar1(rutaFull);
+            guiReview.setBtnStar2(rutaFull);
+            guiReview.setBtnStar3(rutaFull);
+            guiReview.setBtnStar4(rutaFull);
+            guiReview.setBtnStar5(rutaFull);
+        } else if (object == guiReview.getBtnStar4()) {
+            guiReview.setBtnStar1(rutaFull);
+            guiReview.setBtnStar2(rutaFull);
+            guiReview.setBtnStar3(rutaFull);
+            guiReview.setBtnStar4(rutaFull);
+            guiReview.setBtnStar5(rutaEmpty);
+        } else if (object == guiReview.getBtnStar3()) {
+            guiReview.setBtnStar1(rutaFull);
+            guiReview.setBtnStar2(rutaFull);
+            guiReview.setBtnStar3(rutaFull);
+            guiReview.setBtnStar4(rutaEmpty);
+            guiReview.setBtnStar5(rutaEmpty);
+        } else if (object == guiReview.getBtnStar2()) {
+            guiReview.setBtnStar1(rutaFull);
+            guiReview.setBtnStar2(rutaFull);
+            guiReview.setBtnStar3(rutaEmpty);
+            guiReview.setBtnStar4(rutaEmpty);
+            guiReview.setBtnStar5(rutaEmpty);
+        } else if (object == guiReview.getBtnStar1()) {
+            guiReview.setBtnStar1(rutaFull);
+            guiReview.setBtnStar2(rutaEmpty);
+            guiReview.setBtnStar3(rutaEmpty);
+            guiReview.setBtnStar4(rutaEmpty);
+            guiReview.setBtnStar5(rutaEmpty);
         }
-        return datos;
-    }
+    }// Fin de set starts
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -133,6 +164,19 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                 if (validate().equals(usuarioValido)) {
                     guiMain.dispose();
                     guiMain.clean();
+                    if (user.getRol().equals("Usuario")) {
+                        mainPage.getBtnMaintenance().setVisible(false);
+                        mainPage.getBtnAddService().setVisible(false);
+                        mainPage.getBtnDeleteServ().setVisible(false);
+                    } else if (user.getRol().equals("Socio")) {
+                        mainPage.getBtnMaintenance().setVisible(false);
+                        mainPage.getBtnAddService().setVisible(true);
+                        mainPage.getBtnDeleteServ().setVisible(false);
+                    } else if (user.getRol().equals("admin")) {
+                        mainPage.getBtnAddService().setVisible(true);
+                        mainPage.getBtnMaintenance().setVisible(true);
+                        mainPage.getBtnDeleteServ().setVisible(true);
+                    }
                     mainPage.setVisible(true);
                 }
                 break;
@@ -141,34 +185,102 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                 serviceController.getGuiServiceRegister().setVisible(true);
                 break;
             case "Maintenance":
-                String administradorCorrect="Bienvenido administrador de usuarios.";
-                guiMain.showMessage(validateAdmin());
-                if (validateAdmin()==administradorCorrect) {
-                    guiMain.dispose();
-                    guiMain.clean();
-                    guiUserMaintenance.setVisible(true);
-                }
+                String administradorCorrect = "Bienvenido administrador de usuarios.";
+                mainPage.dispose();
+                guiUserMaintenance.setVisible(true);
                 break;
             case "Informacion":
                 if (service != null) {
                     guiInfoService.getjLabelTitle().setText(service.getName());
-                    guiInfoService.getjLabelDescrip().setText(service.getDescription());
+                    guiInfoService.getjLabelDescrip().setText("<html>" + service.getDescription() + "</html>");
                     guiInfoService.getjLabelSocioN().setText(service.getSocio());
-                    guiInfoService.setJlabelIcon(service.getIcon());
+                    guiInfoService.setjLabelIcon(service.getIcon());
+                    guiInfoService.setjLabelPrice(service.getAproximatePrice());
+                    guiInfoService.setStars(service.getCalificacion());
                     guiInfoService.setVisible(true);
-                }else{
+                } else {
                     guiMain.showMessage("Debe hacer click en algún servico para poder desplegar más informacón.");
                 }
                 break;
-            case"Hire":
+            case "Hire":
                 guiMain.showMessage("Felicidades!\n\nUsted ha contrado el servico, nuestro socio la ha estar realizando el trabajo lo antes posible."
                         + "\nMuchas gracias por preferirnos");
                 guiInfoService.dispose();
+                guiReview.setVisible(true);
+//                mainPage.setVisible(true);
+                break;
+            case "Guardar":
+                if (star == 0) {
+                    guiReview.showMessage("Debe asignar una puntuación antes de guardar su review.");
+                } else if (guiReview.getTxtReview().equals("")) {
+                    guiReview.showMessage("Debe llenar su comentario antes de guardar su review.");
+                } else {
+                    String listName = service.getName() + " ReviewList";
+                    String comment = guiReview.getTxtReview();
+                    int reviewStars = star;
+                    int starsCalification = 0;
+                    ReviewList reviewList = reviewRecord.search(listName);
+                    String userName = user.getNameUser();
+                    if (reviewRecord.search(listName) == null) {
+                        reviewList = new ReviewList(listName);
+                        Review review = new Review(reviewStars, comment, userName);
+                        reviewList.add(review);
+                        reviewRecord.add(reviewList);
+                        starsCalification = reviewList.getReview(0).getStars();
+                    } else {
+                        reviewList = reviewRecord.search(listName);
+                        Review review = new Review(reviewStars, comment, userName);
+                        reviewList.add(review);
+                        reviewRecord.edit(reviewList);
+                        for (int index = 0; index < reviewList.getTamaño() + 1; index++) {
+                            reviewList = reviewRecord.search(listName);
+                            starsCalification += reviewList.getReview(index).getStars();
+                        }
+                    }
+                    
+                    service.setCalificacion(starsCalification, reviewList.getTamaño());
+                    serviceController.getRecord().edit(service);
+                    serviceController.getServiceTable().setData(serviceController.getRecord().getData(), Service.LABELS_SERVICE);
+                    star = 0;
+                    guiReview.dispose();
+                    guiReview.clean();
+                    mainPage.setVisible(true);
+                }
+                
+                break;
+            case "Star1":
+                star = 1;
+                break;
+            case "Star2":
+                star = 2;
+                break;
+            case "Star3":
+                star = 3;
+                break;
+            case "Star4":
+                star = 4;
+                break;
+            case "Star5":
+                star = 5;
+                break;
+            case "SalirReview":
+                guiReview.clean();
+                guiReview.dispose();
                 mainPage.setVisible(true);
                 break;
-            case"Cancel":
+            
+            case "Cancel":
                 guiInfoService.dispose();
                 mainPage.setVisible(true);
+                break;
+            
+            case "DeleteServ":
+                if (service != null) {
+                    
+                    guiMain.showMessage(record.delete(service.getName()));    
+                    serviceController.getServiceTable().setData(serviceController.getRecord().getData(), Service.LABELS_SERVICE);
+                }
+                
                 break;
             case "LogOut":
                 mainPage.dispose();
@@ -179,42 +291,65 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                 break;
             default:
                 throw new AssertionError();
-        }
-    }
+        }// Fin de switch
+    }// Fin de accionListener
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String [] serviceRow= serviceTable.getRowSelected();
-        service= record.search(serviceRow[0]);
+        
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
+        
+        if (guiReview.isVisible()) {
+            Object object = e.getSource();
+            setStars(object);
+        } else {
+            String[] serviceRow = serviceTable.getRowSelected();
+            service = record.search(serviceRow[0]);
+            System.out.println(service.getName());
+        }
+        
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
+        
+        Object object = e.getSource();
+        if (star == 0) {
+            setStars(object);
+        }
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
+        String ruta = "./src/main/resources/img/ButtonEmptyStar.png";
+        if (star == 0) {
+            guiReview.setBtnStar1(ruta);
+            guiReview.setBtnStar2(ruta);
+            guiReview.setBtnStar3(ruta);
+            guiReview.setBtnStar4(ruta);
+            guiReview.setBtnStar5(ruta);
+        }
+        
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
         serviceTable.filterByName();
     }
-
-}
+    
+}// Fin de clase

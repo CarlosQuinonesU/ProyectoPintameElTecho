@@ -4,7 +4,6 @@
  */
 package ucr.ac.cr.pintameeltecho.model.service;
 
-
 /**
  *
  * @author Admin
@@ -13,32 +12,22 @@ public class Service {
 
     private String name, description, socio, calificacion;
     private String icon;
-//    private String aproximatePrice;
-//    private double totalPrice;
-//    private Review review;
+    private String aproximatePrice;
 
     public static final String LABELS_SERVICE[] = {"Nombre", "Descripción", "Socio", "Calificación"};
 
     public Service() {
     }
 
-    public Service(String name, String description, String socio, String icon) {
+    public Service(String name, String description, String aproximatePrice, String socio, String icon) {
         this.name = name;
         this.description = description;
-//        this.aproximatePrice=aproximatePrice;
+        this.aproximatePrice = aproximatePrice;
         this.socio = socio;
         this.icon = icon;
-        calificacion = "Buena";
+        calificacion = "Sin calificación";
     }
 
-//    public Service(String name, String icon, String description, String aproximatePrice, double totalPrice, Review review) {
-//        this.name = name;
-//        this.icon = icon;
-//        this.description = description;
-//        this.aproximatePrice = aproximatePrice;
-//        this.totalPrice = totalPrice;
-//        this.review = review;
-//    }
     public String getSocio() {
         return socio;
     }
@@ -47,18 +36,35 @@ public class Service {
         this.socio = socio;
     }
 
-//    public Review getReview() {
-//        return review;
-//    }
-//
-//    public void setReview(Review review) {
-//        this.review = review;
-//    }
     public String getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(String calificacion) {
+    public void setCalificacion(int starts, int tamaño) {
+        String calificacion = "Sin calificación";
+        int promedio =starts;
+        if (tamaño != 0) {
+            promedio = (int) starts / tamaño;
+        }
+        switch (promedio) {
+            case 5:
+                calificacion = "Muy buena";
+                break;
+            case 4:
+                calificacion = "Buena";
+                break;
+            case 3:
+                calificacion = "Normal";
+                break;
+            case 2:
+                calificacion = "Mala";
+                break;
+            case 1:
+                calificacion = "Muy mala";
+                break;
+            default:
+                break;
+        }
         this.calificacion = calificacion;
     }
 
@@ -85,23 +91,15 @@ public class Service {
     public void setIcon(String icon) {
         this.icon = icon;
     }
-    
 
-//    public String getAproximatePrice() {
-//        return aproximatePrice;
-//    }
-//
-//    public void setAproximatePrice(String aproximatePrice) {
-//        this.aproximatePrice = aproximatePrice;
-//    }
-//    public double getTotalPrice() {
-//        return totalPrice;
-//    }
-//
-//    public void setTotalPrice(double totalPrice) {
-//        this.totalPrice = totalPrice;
-//    }
-//    
+    public String getAproximatePrice() {
+        return aproximatePrice;
+    }
+
+    public void setAproximatePrice(String aproximatePrice) {
+        this.aproximatePrice = aproximatePrice;
+    }
+
     public String getProperty(int index) {
         switch (index) {
             case 0:
@@ -120,6 +118,18 @@ public class Service {
     @Override
     public String toString() {
         return "Service{" + "name=" + name + ", description=" + description + ", socio=" + socio + ", calificacion=" + calificacion + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Service service = (Service) obj;
+        return name.equals(service.name);
     }
 
 }

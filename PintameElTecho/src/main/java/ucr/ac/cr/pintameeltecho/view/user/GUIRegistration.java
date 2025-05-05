@@ -97,13 +97,7 @@ public class GUIRegistration extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        lblMail = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
-        lblDirection = new javax.swing.JLabel();
         lblRol = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        lblPasswordAgain = new javax.swing.JLabel();
         txtMail = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         txtDirection = new javax.swing.JTextField();
@@ -112,109 +106,65 @@ public class GUIRegistration extends javax.swing.JFrame {
         jcbRol = new javax.swing.JComboBox<>();
         btnRegister = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Buuuuuenas, Por favor ingrese sus datos");
-
-        lblMail.setText("Correo:");
-
-        lblName.setText("Nombre:");
-
-        lblDirection.setText("Dirección:");
-
+        lblRol.setFont(new java.awt.Font("Segoe UI Semibold", 1, 30)); // NOI18N
+        lblRol.setForeground(new java.awt.Color(11, 22, 66));
         lblRol.setText("Rol:");
+        getContentPane().add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
-        lblPassword.setText("Contraseña:");
+        txtMail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtMail.setForeground(new java.awt.Color(11, 22, 66));
+        txtMail.setBorder(null);
+        getContentPane().add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 205, 330, 35));
 
-        lblPasswordAgain.setText("Confirmar Contraseña:");
+        txtName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtName.setForeground(new java.awt.Color(11, 22, 66));
+        txtName.setBorder(null);
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 287, 280, 35));
 
+        txtDirection.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtDirection.setForeground(new java.awt.Color(11, 22, 66));
+        txtDirection.setBorder(null);
+        getContentPane().add(txtDirection, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 224, 290, 94));
+
+        txtPassword.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(11, 22, 66));
+        txtPassword.setBorder(null);
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 398, 280, 34));
+
+        txtPasswordAgain.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtPasswordAgain.setForeground(new java.awt.Color(11, 22, 66));
+        txtPasswordAgain.setBorder(null);
+        getContentPane().add(txtPasswordAgain, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 476, 280, 34));
+
+        jcbRol.setBackground(new java.awt.Color(249, 249, 252));
+        jcbRol.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jcbRol.setForeground(new java.awt.Color(11, 22, 66));
         jcbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario", "Socio" }));
+        getContentPane().add(jcbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 130, 50));
 
-        btnRegister.setText("Regsitrar");
+        btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonAcept.png"))); // NOI18N
         btnRegister.setActionCommand("Registrar");
+        btnRegister.setBorder(null);
+        btnRegister.setBorderPainted(false);
+        btnRegister.setContentAreaFilled(false);
+        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, -1, -1));
 
+        btnCancel.setForeground(new java.awt.Color(234, 234, 255));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonCancel.png"))); // NOI18N
         btnCancel.setText("Cancelar");
+        btnCancel.setBorder(null);
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMail, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblName))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblDirection)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtDirection, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPasswordAgain)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPasswordAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblRol)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(lblPassword)
-                                    .addGap(38, 38, 38)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jcbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addGap(312, 312, 312))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(btnRegister)
-                .addGap(201, 201, 201)
-                .addComponent(btnCancel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDirection)
-                    .addComponent(txtDirection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRol)
-                    .addComponent(jcbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPasswordAgain)
-                    .addComponent(txtPasswordAgain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister)
-                    .addComponent(btnCancel))
-                .addGap(44, 44, 44))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/RegisterUserPage.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,13 +174,8 @@ public class GUIRegistration extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JComboBox<String> jcbRol;
-    private javax.swing.JLabel lblDirection;
-    private javax.swing.JLabel lblMail;
-    private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblPasswordAgain;
     private javax.swing.JLabel lblRol;
     private javax.swing.JTextField txtDirection;
     private javax.swing.JTextField txtMail;

@@ -48,7 +48,6 @@ public class GUIMain extends javax.swing.JFrame {
         btnRegister.addActionListener(controller);
         btnLogin.addActionListener(controller);
         btnExit.addActionListener(controller);
-        btnUserMaintenance.addActionListener(controller);
     }
     
     public void showMessage(String message){
@@ -69,87 +68,51 @@ public class GUIMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txtLogInUser = new javax.swing.JTextField();
         txtLogInPassw = new javax.swing.JPasswordField();
-        btnUserMaintenance = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Bienvenido a PINTAME EL TECHO");
+        btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonCrear.png"))); // NOI18N
+        btnRegister.setActionCommand("Registrarse");
+        btnRegister.setBorder(null);
+        btnRegister.setBorderPainted(false);
+        btnRegister.setContentAreaFilled(false);
+        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 650, 179, -1));
 
-        btnRegister.setText("Registrarse");
+        btnLogin.setBackground(new java.awt.Color(153, 204, 255));
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonIngresar.png"))); // NOI18N
+        btnLogin.setActionCommand("Ingresar");
+        btnLogin.setBorder(null);
+        btnLogin.setBorderPainted(false);
+        btnLogin.setContentAreaFilled(false);
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 160, -1));
 
-        btnLogin.setText("Ingresar");
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonSalir.png"))); // NOI18N
+        btnExit.setActionCommand("Salir");
+        btnExit.setBorder(null);
+        btnExit.setBorderPainted(false);
+        btnExit.setContentAreaFilled(false);
+        btnExit.setFocusPainted(false);
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 110, 100));
 
-        btnExit.setText("Salir");
+        txtLogInUser.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        txtLogInUser.setForeground(new java.awt.Color(11, 22, 66));
+        txtLogInUser.setBorder(null);
+        getContentPane().add(txtLogInUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 330, 40));
 
-        jLabel2.setText("Correo electronico:");
+        txtLogInPassw.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        txtLogInPassw.setForeground(new java.awt.Color(11, 22, 66));
+        txtLogInPassw.setBorder(null);
+        getContentPane().add(txtLogInPassw, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 335, 270, 40));
 
-        jLabel3.setText("Contraseña:");
-
-        btnUserMaintenance.setText("Mantenimiento de usuarios");
-        btnUserMaintenance.setActionCommand("Maintenance");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(48, 48, 48)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtLogInPassw)
-                                    .addComponent(txtLogInUser, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnUserMaintenance))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtLogInUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtLogInPassw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogin)
-                    .addComponent(btnRegister))
-                .addGap(43, 43, 43)
-                .addComponent(btnUserMaintenance)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/InicialPage.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1120, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,10 +122,7 @@ public class GUIMain extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnUserMaintenance;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField txtLogInPassw;
     private javax.swing.JTextField txtLogInUser;
     // End of variables declaration//GEN-END:variables

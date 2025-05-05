@@ -21,8 +21,8 @@ public class GUIInfoService extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    public void listen(ActionListener controller){
+
+    public void listen(ActionListener controller) {
         btnCancelContract.addActionListener(controller);
         btnContract.addActionListener(controller);
     }
@@ -39,7 +39,7 @@ public class GUIInfoService extends javax.swing.JDialog {
         this.jLabelTitle = jLabelTitle;
     }
 
-    public void setJlabelIcon(String icon) {
+    public void setjLabelIcon(String icon) {
         this.jlabelIcon.setIcon(new ImageIcon(icon));
     }
 
@@ -55,10 +55,61 @@ public class GUIInfoService extends javax.swing.JDialog {
         return jLabelTitle;
     }
 
-    public JLabel getJlabelIcon() {
+    public JLabel getjLabelIcon() {
         return jlabelIcon;
     }
+
+    public String getjLabelPrice() {
+        return jLabelPrice.getText();
+    }
+
+    public void setjLabelPrice(String jLabelPrice) {
+        this.jLabelPrice.setText(jLabelPrice);
+    }
     
+
+    public void setStars(String calificacion) {
+        star1.setVisible(false);
+        star2.setVisible(false);
+        star3.setVisible(false);
+        star4.setVisible(false);
+        star5.setVisible(false);
+
+        switch (calificacion) {
+            
+        case "Sin calificación":
+            break;
+        case "Muy mala":
+                star1.setVisible(true);
+                break;
+        case "Mala":
+                star1.setVisible(true);
+                star2.setVisible(true);
+                break;
+            case "Normal":
+                star1.setVisible(true);
+                star2.setVisible(true);
+                star3.setVisible(true);
+                break;
+            case "Buena":
+                star1.setVisible(true);
+                star2.setVisible(true);
+                star3.setVisible(true);
+                star4.setVisible(true);
+                break;
+            case "Muy buena":
+                star1.setVisible(true);
+                star2.setVisible(true);
+                star3.setVisible(true);
+                star4.setVisible(true);
+                star5.setVisible(true);
+                break;
+
+            default:
+                throw new AssertionError();
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,30 +120,64 @@ public class GUIInfoService extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        star4 = new javax.swing.JLabel();
+        star5 = new javax.swing.JLabel();
+        star3 = new javax.swing.JLabel();
+        star2 = new javax.swing.JLabel();
+        star1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnContract = new javax.swing.JButton();
         btnCancelContract = new javax.swing.JButton();
         jLabelSocioN = new javax.swing.JLabel();
         jLabelDescrip = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
         jlabelIcon = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
+        jLabelPrice = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnContract.setText("Contratar");
+        star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FullStar.png"))); // NOI18N
+        getContentPane().add(star4, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 624, -1, -1));
+
+        star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FullStar.png"))); // NOI18N
+        getContentPane().add(star5, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 626, -1, -1));
+
+        star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FullStar.png"))); // NOI18N
+        getContentPane().add(star3, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 630, -1, -1));
+
+        star2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FullStar.png"))); // NOI18N
+        getContentPane().add(star2, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 630, -1, -1));
+
+        star1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FullStar.png"))); // NOI18N
+        getContentPane().add(star1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 630, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/EmptyStars.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, 480, 140));
+
+        btnContract.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonContratar.png"))); // NOI18N
         btnContract.setActionCommand("Hire");
-        getContentPane().add(btnContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 660, -1, -1));
+        btnContract.setBorder(null);
+        btnContract.setBorderPainted(false);
+        btnContract.setContentAreaFilled(false);
+        getContentPane().add(btnContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 620, -1, -1));
 
-        btnCancelContract.setText("Cancelar");
+        btnCancelContract.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonCancel.png"))); // NOI18N
         btnCancelContract.setActionCommand("Cancel");
-        getContentPane().add(btnCancelContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 660, -1, -1));
+        btnCancelContract.setBorder(null);
+        btnCancelContract.setBorderPainted(false);
+        btnCancelContract.setContentAreaFilled(false);
+        getContentPane().add(btnCancelContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 620, -1, -1));
 
-        jLabelSocioN.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelSocioN.setFont(new java.awt.Font("Segoe UI Semibold", 0, 36)); // NOI18N
         jLabelSocioN.setForeground(new java.awt.Color(28, 42, 87));
         jLabelSocioN.setText("Ricardo Perez Araya ");
-        getContentPane().add(jLabelSocioN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+        getContentPane().add(jLabelSocioN, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         jLabelDescrip.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelDescrip.setForeground(new java.awt.Color(28, 42, 87));
@@ -110,6 +195,24 @@ public class GUIInfoService extends javax.swing.JDialog {
         jlabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/IconPaint.png"))); // NOI18N
         getContentPane().add(jlabelIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 360, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(28, 42, 87));
+        jLabel2.setText("Rango de precios:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+
+        jLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel.setForeground(new java.awt.Color(28, 42, 87));
+        jLabel.setText(" ₡");
+        getContentPane().add(jLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, -1, -1));
+
+        jLabelPrice.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelPrice.setForeground(new java.awt.Color(28, 42, 87));
+        jLabelPrice.setText("10000-20000");
+        getContentPane().add(jLabelPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CuadroPrecio.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, -1));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FondoServicio.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -120,10 +223,20 @@ public class GUIInfoService extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelContract;
     private javax.swing.JButton btnContract;
+    private javax.swing.JLabel jLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelDescrip;
     private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLabelPrice;
     private javax.swing.JLabel jLabelSocioN;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jlabelIcon;
+    private javax.swing.JLabel star1;
+    private javax.swing.JLabel star2;
+    private javax.swing.JLabel star3;
+    private javax.swing.JLabel star4;
+    private javax.swing.JLabel star5;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,8 +19,8 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public class GenericDAOJson <T>{
-    
+public class GenericDAOJson<T> {
+
     private String fileName;
     private Gson gson;
     private Type type;
@@ -31,46 +31,41 @@ public class GenericDAOJson <T>{
     public GenericDAOJson(String fileName, Type type) {
         this.fileName = fileName;
         this.type = type;
-        gson=new GsonBuilder().setPrettyPrinting().create();// Formato del Gson
+        gson = new GsonBuilder().setPrettyPrinting().create();// Formato del Gson
     }
-    
-    
-    
-    
-    public ArrayList<T> getAll(){
-       try (FileReader reader= new FileReader(fileName)){
-           T[] elements = gson.fromJson(reader, type);
-           if (elements==null) {
-               return new ArrayList<>();
-           }else{
-               return new ArrayList<>(Arrays.asList(elements));
-           }
-       }
-       catch (IOException e){
-           return new ArrayList<> ();
-       } 
+
+    public ArrayList<T> getAll() {
+        try (FileReader reader = new FileReader(fileName)) {
+            T[] elements = gson.fromJson(reader, type);
+            if (elements == null) {
+                return new ArrayList<>();
+            } else {
+                return new ArrayList<>(Arrays.asList(elements));
+            }
+        } catch (IOException e) {
+            return new ArrayList<>();
+        }
     }
-    
-    
+
     public void writeJson(ArrayList<T> elements) {
-        try (FileWriter writer = new FileWriter(fileName)){
-            gson.toJson(elements.toArray(),writer);
+        try (FileWriter writer = new FileWriter(fileName)) {
+            gson.toJson(elements.toArray(), writer);
         } catch (IOException ex) {
             Logger.getLogger(GenericDAOJson.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public String add(T element) {
-        ArrayList<T> elements=getAll();
+        ArrayList<T> elements = getAll();
         if (elements.add(element)) {
             writeJson(elements);
-            return "Fue registrado exitosamente."; 
+            return "Fue registrado exitosamente.";
         }
         return "Hubo un problema en la ejecución.";
     }
-    
 
     public int search(T element) {
-        ArrayList<T> elements =getAll();
+        ArrayList<T> elements = getAll();
         for (int index = 0; index < elements.size(); index++) {
             if (elements.get(index).equals(element)) {
                 return index;
@@ -78,31 +73,27 @@ public class GenericDAOJson <T>{
         }
         return -1;
     }
-    
+
     public String delete(T element) {
-        ArrayList<T> elements =getAll();
+        ArrayList<T> elements = getAll();
         int index = search(element);
         if (index == -1) {
             return "Ese elemento no se encuentra registrado.";
         } else {
             elements.remove(index);
             writeJson(elements);
-            
+
         }
         return "El elememto fue eliminado.";
     }
-    
-    public String edit(T element){
-        ArrayList<T> elements= getAll();
-        int index=search(element);
+
+    public String edit(T element) {
+        ArrayList<T> elements = getAll();
+        int index = search(element);
         elements.set(index, element);
         writeJson(elements);
         return "Los datos han sido modificados.";
     }
 
-
-    
 }// Fin de clase
-    
-    
 

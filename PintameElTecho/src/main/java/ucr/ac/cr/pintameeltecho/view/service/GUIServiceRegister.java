@@ -41,14 +41,6 @@ public class GUIServiceRegister extends javax.swing.JFrame {
         return txtName.getText();
     }
 
-    public String getTxtSocio() {
-        return txtSocio.getText();
-    }
-
-    public void setTxtSocio(String txtSocio) {
-        this.txtSocio.setText(txtSocio);
-    }
-
     public void setTxtAproximatePrice(String txtAproximatePrice) {
         this.txtAproximatePrice.setText(txtAproximatePrice);
     }
@@ -70,7 +62,6 @@ public class GUIServiceRegister extends javax.swing.JFrame {
         setTxtAproximatePrice("");
         setTxtDescription("");
         setTxtName("");
-        setTxtSocio("");
     }
     
     /**
@@ -82,148 +73,71 @@ public class GUIServiceRegister extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblName = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtDescription = new javax.swing.JTextField();
         txtAproximatePrice = new javax.swing.JTextField();
         btnArt = new javax.swing.JButton();
         btnReparation = new javax.swing.JButton();
         btnGarden = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        txtSocio = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblName.setText("Nombre de servicio");
+        txtName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtName.setForeground(new java.awt.Color(11, 22, 66));
+        txtName.setBorder(null);
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 202, 330, 38));
 
-        jLabel2.setText("Descripción:");
+        txtDescription.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtDescription.setForeground(new java.awt.Color(11, 22, 66));
+        txtDescription.setBorder(null);
+        getContentPane().add(txtDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 300, 96));
 
-        jLabel3.setText("Precio Aproximado");
+        txtAproximatePrice.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtAproximatePrice.setForeground(new java.awt.Color(11, 22, 66));
+        txtAproximatePrice.setBorder(null);
+        getContentPane().add(txtAproximatePrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 478, 280, 33));
 
-        jLabel4.setText("¿Cuál icono representa mejor su servicio?");
-
-        btnArt.setText("Artistic");
+        btnArt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonIconPintura.png"))); // NOI18N
         btnArt.setActionCommand("Arte");
+        btnArt.setBorder(null);
+        btnArt.setBorderPainted(false);
+        btnArt.setContentAreaFilled(false);
+        getContentPane().add(btnArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, -1, 160));
 
-        btnReparation.setText("Plumber");
+        btnReparation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonIconReparacion.png"))); // NOI18N
         btnReparation.setActionCommand("Reparaciones");
+        btnReparation.setBorder(null);
+        btnReparation.setBorderPainted(false);
+        btnReparation.setContentAreaFilled(false);
+        getContentPane().add(btnReparation, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 440, 190, 160));
 
-        btnGarden.setText("Garden");
+        btnGarden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonIconJardineria.png"))); // NOI18N
         btnGarden.setActionCommand("Jardin");
+        btnGarden.setBorder(null);
+        btnGarden.setBorderPainted(false);
+        btnGarden.setContentAreaFilled(false);
+        getContentPane().add(btnGarden, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 260, -1, 160));
 
-        jLabel1.setText("Pintura/Diseño");
+        btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonAcept.png"))); // NOI18N
+        btnRegister.setActionCommand("Registrar");
+        btnRegister.setBorder(null);
+        btnRegister.setBorderPainted(false);
+        btnRegister.setContentAreaFilled(false);
+        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 630, 119, 100));
 
-        jLabel5.setText("Jardinería");
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonCancel.png"))); // NOI18N
+        btnCancel.setActionCommand("Cancelar");
+        btnCancel.setBorder(null);
+        btnCancel.setBorderPainted(false);
+        btnCancel.setContentAreaFilled(false);
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 630, 120, 110));
 
-        jLabel6.setText("Reparaciones/Creación");
-
-        btnRegister.setText("Registrar");
-
-        btnCancel.setText("Cancelar");
-
-        jLabel7.setText("socio");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(btnArt))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(btnGarden)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(btnReparation, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(lblName)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel7)))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                            .addComponent(txtName)
-                            .addComponent(txtAproximatePrice)
-                            .addComponent(txtSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtAproximatePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnArt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGarden, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReparation, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PageServiceRegister.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -236,17 +150,9 @@ public class GUIServiceRegister extends javax.swing.JFrame {
     private javax.swing.JButton btnGarden;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnReparation;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtAproximatePrice;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtSocio;
     // End of variables declaration//GEN-END:variables
 }

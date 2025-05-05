@@ -6,10 +6,12 @@ package ucr.ac.cr.pintameeltecho.controller.serviceController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import ucr.ac.cr.pintameeltecho.controller.MainController;
 import ucr.ac.cr.pintameeltecho.model.service.Service;
 import ucr.ac.cr.pintameeltecho.model.service.ServiceRecord;
+import ucr.ac.cr.pintameeltecho.model.user.RegularUser;
 import ucr.ac.cr.pintameeltecho.view.page.MainPage;
-import ucr.ac.cr.pintameeltecho.view.page.ServiceTable;
+import ucr.ac.cr.pintameeltecho.view.service.ServiceTable;
 import ucr.ac.cr.pintameeltecho.view.service.GUIServiceRegister;
 
 /**
@@ -24,14 +26,16 @@ public class ServiceController implements ActionListener {
     private MainPage mainPage;
     private String icon;
     private ServiceTable serviceTable;
-    
+    private RegularUser user;
+    private MainController mainController;
     //Seccion de contructores
 
-    public ServiceController() {
+    public ServiceController(MainController mainController) {
         record=new ServiceRecord();
         guiServiceRegister = new GUIServiceRegister();
         guiServiceRegister.listen(this);
         icon="";
+        this.mainController=mainController;
     }
     
     //Seccion de set's and get's
@@ -51,6 +55,10 @@ public class ServiceController implements ActionListener {
     public void setServiceTable(ServiceTable serviceTable) {
         this.serviceTable = serviceTable;
     }
+
+    public ServiceTable getServiceTable() {
+        return serviceTable;
+    }
     
     
     //Seccion de metodos de accion
@@ -63,8 +71,6 @@ public class ServiceController implements ActionListener {
             datos= "Debe rellenar campo (DESCRIPCION)";
         } else if (guiServiceRegister.getTxtAproximatePrice().equals("")) {
             datos= "Debe rellenar campo (PRECIO APROXIMADO)";
-        } else if (guiServiceRegister.getTxtSocio().equals("")) {
-            datos ="Debe rellenar campo (Socio)";
         } else if (icon.equals("")) {
             datos ="Debe selecionar una opcion de icono.";
         } else {
@@ -88,13 +94,13 @@ public class ServiceController implements ActionListener {
             case "Registrar":
                 String servicioValido="Se ha registrado correctamente";
                 String name=guiServiceRegister.getTxtName();
-                String socio=guiServiceRegister.getTxtSocio();
+                String socio=mainController.getUser().getNameUser();
                 String description=guiServiceRegister.getTxtDescription();
-//                String aproximatePrice=guiServiceRegister.getTxtAproximatePrice();
+                String aproximatePrice=guiServiceRegister.getTxtAproximatePrice();
                 guiServiceRegister.showMessage(validate());
                 
                 if(validate()==servicioValido){
-                    service = new Service(name, description, socio, icon);
+                    service = new Service(name, description, aproximatePrice, socio, icon);
                     record.add(service);
                     icon="";
                     guiServiceRegister.dispose();
@@ -113,4 +119,4 @@ public class ServiceController implements ActionListener {
         }
     }
 
-}
+}// Fin de clase

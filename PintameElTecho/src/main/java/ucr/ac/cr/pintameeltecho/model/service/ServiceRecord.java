@@ -44,7 +44,7 @@ public class ServiceRecord {
 
     public String delete(String name) {
         service = search(name);
-        return services.delete(name);
+        return services.delete(service);
     }
 
     public String[][] getData() {
