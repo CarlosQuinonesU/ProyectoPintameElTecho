@@ -33,6 +33,10 @@ public class MainPage extends javax.swing.JFrame {
         btnAddService.addActionListener(controller);
         btnMaintenance.addActionListener(controller);
         btnDeleteServ.addActionListener(controller);
+        
+    }
+    public void listenUser(ActionListener controller){
+        btnUser.addActionListener(controller);
     }
     
     public void showMessage(String message){
@@ -75,6 +79,7 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnUser = new javax.swing.JButton();
         btnCloseSection = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
         btnAddService = new javax.swing.JButton();
@@ -86,12 +91,19 @@ public class MainPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonUser.png"))); // NOI18N
+        btnUser.setActionCommand("UserEdit");
+        btnUser.setBorder(null);
+        btnUser.setBorderPainted(false);
+        btnUser.setContentAreaFilled(false);
+        getContentPane().add(btnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 10, -1, -1));
+
         btnCloseSection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonCerrar.png"))); // NOI18N
         btnCloseSection.setActionCommand("LogOut");
         btnCloseSection.setBorder(null);
         btnCloseSection.setBorderPainted(false);
         btnCloseSection.setContentAreaFilled(false);
-        getContentPane().add(btnCloseSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 570, 220, -1));
+        getContentPane().add(btnCloseSection, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 610, 220, -1));
 
         btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonInfo.png"))); // NOI18N
         btnInfo.setActionCommand("Informacion");
@@ -124,7 +136,6 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(serviceTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 710));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MainPage.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1060, 780));
 
         pack();
@@ -140,6 +151,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteServ;
     private javax.swing.JButton btnInfo;
     private javax.swing.JButton btnMaintenance;
+    private javax.swing.JButton btnUser;
     private javax.swing.JLabel jLabel1;
     private ucr.ac.cr.pintameeltecho.view.service.ServiceTable serviceTable;
     // End of variables declaration//GEN-END:variables

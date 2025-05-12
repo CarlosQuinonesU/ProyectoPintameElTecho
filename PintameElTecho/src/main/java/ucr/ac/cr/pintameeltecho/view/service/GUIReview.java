@@ -52,7 +52,7 @@ public class GUIReview extends javax.swing.JFrame {
     }
 
     public void setTxtReview(String txtReview) {
-        this.txtReview.getText();
+        this.txtReview.setText(txtReview);
     }
 
     public JButton getBtnStar1() {

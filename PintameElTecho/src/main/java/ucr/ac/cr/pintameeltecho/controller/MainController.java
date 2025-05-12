@@ -33,7 +33,7 @@ import ucr.ac.cr.pintameeltecho.view.user.GUIUserMaintenance;
  * @author Admin
  */
 public class MainController implements ActionListener, MouseListener, KeyListener {
-    
+
     private GUIMain guiMain;
     private GUIRegistration guiRegistration;
     private UserController userController;
@@ -49,8 +49,9 @@ public class MainController implements ActionListener, MouseListener, KeyListene
     private GUIInfoService guiInfoService;
     private GUIReview guiReview;
     private ReviewRecord reviewRecord;
+
     private int star;
-    
+
     public MainController() {
         guiMain = new GUIMain();
         mainPage = new MainPage();
@@ -63,6 +64,7 @@ public class MainController implements ActionListener, MouseListener, KeyListene
         guiUserMaintenance = userController.getGuiUserMaintenance();
         serviceTable = mainPage.getServiceTable();
         guiInfoService = new GUIInfoService(mainPage, true);
+        guiRegistration = new GUIRegistration();
         guiMain.listen(this);
         guiMain.setVisible(true);
         mainPage.listen(this);
@@ -78,26 +80,26 @@ public class MainController implements ActionListener, MouseListener, KeyListene
         user = null;
         star = 0;
     }
-    
+
     public GUIMain getGuiMain() {
         return guiMain;
     }
-    
+
     public MainPage getMainPage() {
         return mainPage;
     }
-    
+
     public ServiceTable getServiceTable() {
         return serviceTable;
     }
-    
+
     public RegularUser getUser() {
         return user;
     }
-    
+
     public String validate() {
         String datos = "";
-        
+
         if (guiMain.getTxtLogInUser().equals("")) {
             datos = "El campo del correo electrónico no puede quedar vacío.";
         } else if (guiMain.getTxtLogInPassw().equals("")) {
@@ -114,7 +116,7 @@ public class MainController implements ActionListener, MouseListener, KeyListene
         }
         return datos;
     }
-    
+
     public void setStars(Object object) {
         String rutaFull = "./src/main/resources/img/ButtonFullStar.png";
         String rutaEmpty = "./src/main/resources/img/ButtonEmptyStar.png";
@@ -207,7 +209,6 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                         + "\nMuchas gracias por preferirnos");
                 guiInfoService.dispose();
                 guiReview.setVisible(true);
-//                mainPage.setVisible(true);
                 break;
             case "Guardar":
                 if (star == 0) {
@@ -232,21 +233,20 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                         Review review = new Review(reviewStars, comment, userName);
                         reviewList.add(review);
                         reviewRecord.edit(reviewList);
-                        for (int index = 0; index < reviewList.getTamaño() + 1; index++) {
+                        for (int index = 0; index < reviewList.getTamaño(); index++) {
                             reviewList = reviewRecord.search(listName);
                             starsCalification += reviewList.getReview(index).getStars();
                         }
                     }
-                    
+
                     service.setCalificacion(starsCalification, reviewList.getTamaño());
                     serviceController.getRecord().edit(service);
                     serviceController.getServiceTable().setData(serviceController.getRecord().getData(), Service.LABELS_SERVICE);
                     star = 0;
-                    guiReview.dispose();
                     guiReview.clean();
+                    guiReview.dispose();
                     mainPage.setVisible(true);
                 }
-                
                 break;
             case "Star1":
                 star = 1;
@@ -268,19 +268,17 @@ public class MainController implements ActionListener, MouseListener, KeyListene
                 guiReview.dispose();
                 mainPage.setVisible(true);
                 break;
-            
+
             case "Cancel":
                 guiInfoService.dispose();
                 mainPage.setVisible(true);
                 break;
-            
+
             case "DeleteServ":
                 if (service != null) {
-                    
-                    guiMain.showMessage(record.delete(service.getName()));    
+                    guiMain.showMessage(record.delete(service.getName()));
                     serviceController.getServiceTable().setData(serviceController.getRecord().getData(), Service.LABELS_SERVICE);
                 }
-                
                 break;
             case "LogOut":
                 mainPage.dispose();
@@ -296,36 +294,35 @@ public class MainController implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
         if (guiReview.isVisible()) {
             Object object = e.getSource();
             setStars(object);
         } else {
             String[] serviceRow = serviceTable.getRowSelected();
             service = record.search(serviceRow[0]);
-            System.out.println(service.getName());
         }
-        
+
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
         Object object = e.getSource();
         if (star == 0) {
             setStars(object);
         }
     }
-    
+
     @Override
     public void mouseExited(MouseEvent e) {
         String ruta = "./src/main/resources/img/ButtonEmptyStar.png";
@@ -336,20 +333,20 @@ public class MainController implements ActionListener, MouseListener, KeyListene
             guiReview.setBtnStar4(ruta);
             guiReview.setBtnStar5(ruta);
         }
-        
+
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) {
     }
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
         serviceTable.filterByName();
     }
-    
+
 }// Fin de clase

@@ -26,5 +26,33 @@
     "direction": "Guadalupe, San josé",
     "rol": "Socio",
     "password": "1214"
+  },
+  {
+    "mail": "Carlos123@gmail.com",
+    "nameUser": "Carlos Quiñones",
+    "direction": "Alajuela ",
+    "rol": "Socio",
+    "password": "1234"
+  },
+  {
+    "mail": "a",
+    "nameUser": "asdvsdv",
+    "direction": "a",
+    "rol": "Usuario",
+    "password": "a"
+  },
+  {
+    "mail": "q",
+    "nameUser": "q",
+    "direction": "q",
+    "rol": "Usuario",
+    "password": "q"
+  },
+  {
+    "mail": "b",
+    "nameUser": "b",
+    "direction": "b",
+    "rol": "Usuario",
+    "password": "b"
   }
 ]

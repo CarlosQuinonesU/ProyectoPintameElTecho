@@ -2,17 +2,17 @@
   {
     "name": "Jardineria expres",
     "description": "Te dejo tus flores y jardin hermoso XDDDDDDD",
-    "socio": "Pendall Penes ",
-    "calificacion": "Buena",
+    "socio": "Pendall Perez ",
+    "calificacion": "Normal",
     "icon": "src/main/resources/img/IconGarden.png",
     "aproximatePrice": "200000-500000"
   },
   {
-    "name": "Te pinto el techo",
-    "description": "Te pinto el techo rapidito XDDDDD",
-    "socio": "q",
-    "calificacion": "Buena",
+    "name": "Pintura de techo",
+    "description": "Te pinto el techo",
+    "socio": "Carlos Quiñones",
+    "calificacion": "Normal",
     "icon": "src/main/resources/img/IconPaint.png",
-    "aproximatePrice": "50000-100000"
+    "aproximatePrice": "10000 - 20000"
   }
 ]

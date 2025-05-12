@@ -14,6 +14,7 @@ import ucr.ac.cr.pintameeltecho.controller.MainController;
 import ucr.ac.cr.pintameeltecho.model.user.RegularUser;
 import ucr.ac.cr.pintameeltecho.model.user.UserRecord;
 import ucr.ac.cr.pintameeltecho.view.GUIMain;
+import ucr.ac.cr.pintameeltecho.view.page.MainPage;
 import ucr.ac.cr.pintameeltecho.view.panels.DataTable;
 import ucr.ac.cr.pintameeltecho.view.user.GUIRegistration;
 import ucr.ac.cr.pintameeltecho.view.user.GUIUserMaintenance;
@@ -26,20 +27,24 @@ public class UserController implements ActionListener, MouseListener, KeyListene
 
     private GUIMain guiMain;
     private GUIRegistration guiRegistration;
+    private MainPage mainPage;
     private RegularUser user;
     private UserRecord userRegister;
     private MainController mainController;
     private GUIUserMaintenance guiUserMaintenance;
     private DataTable dataTable;
     private int option;
+    
 
     //Seccion de constructores
     
     public UserController(MainController mainController) {
         userRegister=new UserRecord();
         guiRegistration = new GUIRegistration();
+        mainPage=new MainPage();
         this.mainController= mainController;
         guiRegistration.listen(this);
+        mainPage.listenUser(this);
         guiUserMaintenance=new GUIUserMaintenance(this);
         dataTable = guiUserMaintenance.getDataTable();
         dataTable.listenKeyBoard(this);
@@ -65,6 +70,12 @@ public class UserController implements ActionListener, MouseListener, KeyListene
     public GUIUserMaintenance getGuiUserMaintenance() {
         return guiUserMaintenance;
     }
+
+    public void setOption(int option) {
+        this.option = option;
+    }
+    
+    
 
     // Seccion de metodos de accion
     
@@ -101,15 +112,17 @@ public class UserController implements ActionListener, MouseListener, KeyListene
                 if (validate() == usuarioValido) {
                     if (option==1||option==0) {
                         user = new RegularUser(mail, name, direction, rol, password);
-                        guiRegistration.showMessage(userRegister.add(user)+"\n\nAhora inicie sesion para acceder a su cuenta");
-                        option=0;
-                        guiRegistration.dispose();
-                        guiRegistration.clean();
                         if (option==0) {
-                            guiUserMaintenance.setVisible(true);
-                        }else{
-                            guiMain.setVisible(true);
+                            guiRegistration.showMessage(userRegister.add(user) + "\n\nAhora inicie sesion para acceder a su cuenta"); 
                         }
+                        guiRegistration.clean();
+                        guiRegistration.dispose();
+                        if (option==0) {
+                            guiMain.setVisible(true);
+                        }else{
+                            guiUserMaintenance.setVisible(true);
+                        }
+                        option=0;
                     } else {
                         user.setNameUser(guiRegistration.getTxtName());
                         user.setDirection(guiRegistration.getTxtDirection());
@@ -125,7 +138,6 @@ public class UserController implements ActionListener, MouseListener, KeyListene
                         }
                     }
                     dataTable.setData(userRegister.getData(), RegularUser.LABELS_USER);
-
                 }
                 break;
             case "Cancelar":
@@ -155,7 +167,6 @@ public class UserController implements ActionListener, MouseListener, KeyListene
                     guiRegistration.setTxtPassword(user.getPassword());
                     guiRegistration.setTxtPasswordAgain(user.getPassword());
                     guiRegistration.setVisible(true);
-//                    user=null;
                 }else{
                     guiRegistration.showMessage("Debe seleccionar un usuario para poder modificarlo.");
                 }
@@ -174,6 +185,8 @@ public class UserController implements ActionListener, MouseListener, KeyListene
                 guiUserMaintenance.dispose();
                 mainController.getMainPage().setVisible(true);
                 break;
+                
+                
                 
             default:
                 throw new AssertionError();

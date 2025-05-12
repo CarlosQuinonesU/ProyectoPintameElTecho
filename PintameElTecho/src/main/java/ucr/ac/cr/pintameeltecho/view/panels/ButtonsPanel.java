@@ -39,42 +39,40 @@ public class ButtonsPanel extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        btnAdd.setText("Agregar");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnEdit.setText("Editar");
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonAddMantenace.png"))); // NOI18N
+        btnAdd.setActionCommand("Agregar");
+        btnAdd.setBorder(null);
+        btnAdd.setContentAreaFilled(false);
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
-        btnDelete.setText("Eliminar");
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonEditarMantenace.png"))); // NOI18N
+        btnEdit.setActionCommand("Editar");
+        btnEdit.setBorder(null);
+        btnEdit.setBorderPainted(false);
+        btnEdit.setContentAreaFilled(false);
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
-        btnMenu.setText("Menú");
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonBorrarMantenace.png"))); // NOI18N
+        btnDelete.setActionCommand("Eliminar");
+        btnDelete.setBorder(null);
+        btnDelete.setBorderPainted(false);
+        btnDelete.setContentAreaFilled(false);
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonHomeMantenace.png"))); // NOI18N
+        btnMenu.setToolTipText("");
         btnMenu.setActionCommand("Menu");
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAdd)
-                .addGap(18, 18, 18)
-                .addComponent(btnEdit)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete)
-                .addGap(18, 18, 18)
-                .addComponent(btnMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnEdit)
-                    .addComponent(btnDelete)
-                    .addComponent(btnMenu))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/MantenaceUsers_1.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 140));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -83,5 +81,6 @@ public class ButtonsPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnMenu;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
